@@ -1,0 +1,65 @@
+# ══════════════════════════════════════════════════════════════════
+# SECRETS — NEVER COMMIT THESE
+# ══════════════════════════════════════════════════════════════════
+
+# Weather API key
+.env
+
+# Firebase config (contains API keys — download from Firebase Console)
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+
+# Android release signing
+android/key.properties
+android/app/*.keystore
+android/app/*.jks
+
+# ══════════════════════════════════════════════════════════════════
+# FLUTTER / DART / PUB
+# ══════════════════════════════════════════════════════════════════
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+
+# ══════════════════════════════════════════════════════════════════
+# BUILD ARTIFACTS
+# ══════════════════════════════════════════════════════════════════
+/android/app/debug
+/android/app/profile
+/android/app/release
+app.*.symbols
+app.*.map.json
+
+# ══════════════════════════════════════════════════════════════════
+# IDE / EDITOR
+# ══════════════════════════════════════════════════════════════════
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.swp
+*.swo
+
+# ══════════════════════════════════════════════════════════════════
+# OS FILES
+# ══════════════════════════════════════════════════════════════════
+.DS_Store
+.DS_Store?
+Thumbs.db
+*.class
+*.log
+*.pyc
+.atom/
+.build/
+.buildlog/
+.history/
+.svn/
+.swiftpm/
+migrate_working_dir/

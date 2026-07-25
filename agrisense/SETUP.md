@@ -2,7 +2,7 @@
 
 ## Required Secret Files (not in git)
 
-These files are excluded from version control. You must add them manually after cloning.
+These files are excluded from version control. You must add them manually after cloning..
 
 ---
 

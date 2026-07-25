@@ -2,12 +2,15 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // ── Helper: is user an admin ───────────────────────────────────────────
+    // ── Helper: is user an admin (checks both Config and config) ──────────
     function isAdmin() {
-      let adminDoc = get(/databases/$(database)/documents/config/admin);
+      let doc1 = get(/databases/$(database)/documents/Config/admin);
+      let doc2 = get(/databases/$(database)/documents/config/admin);
+      let adminDoc = doc1.exists ? doc1 : doc2;
       return adminDoc.exists && (
         request.auth.uid in adminDoc.data.uids ||
-        request.auth.token.phone_number in adminDoc.data.phones
+        ('phone_number' in request.auth.token
+          && request.auth.token.phone_number in adminDoc.data.phones)
       );
     }
 
@@ -31,10 +34,14 @@ service cloud.firestore {
       allow write: if request.auth != null && isAdmin();
     }
 
-    // ── Config (admin list) ────────────────────────────────────────────────
+    // ── Config / admin list ────────────────────────────────────────────────
+    match /Config/{docId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
     match /config/{docId} {
       allow read: if request.auth != null;
-      allow write: if false; // Only writable via Firebase Console
+      allow write: if false;
     }
 
     // ── Community posts ────────────────────────────────────────────────────
@@ -46,7 +53,19 @@ service cloud.firestore {
         && request.resource.data.question.size() > 0
         && request.resource.data.question.size() <= 500;
       allow update: if request.auth != null
-        && (resource.data.userId == request.auth.uid || isAdmin());
+        && (
+          resource.data.userId == request.auth.uid
+          || isAdmin()
+          // Any authenticated user may adjust upvoteCount by exactly ±1
+          // (upvoting/un-upvoting) — no other field may change in that case.
+          || (
+            request.resource.data.diff(resource.data).affectedKeys().hasOnly(['upvoteCount'])
+            && (
+              request.resource.data.upvoteCount == resource.data.upvoteCount + 1
+              || request.resource.data.upvoteCount == resource.data.upvoteCount - 1
+            )
+          )
+        );
       allow delete: if request.auth != null
         && (resource.data.userId == request.auth.uid || isAdmin());
 

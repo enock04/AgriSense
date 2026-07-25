@@ -1,0 +1,284 @@
+<svg viewBox="0 0 960 1100" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif" font-size="12">
+
+  <!-- Background -->
+  <rect width="960" height="1100" fill="#F7F9F7" rx="16"/>
+
+  <!-- ── TITLE ── -->
+  <text x="480" y="36" text-anchor="middle" font-size="18" font-weight="700" fill="#1A1F1A">AgriSense — Information Architecture</text>
+
+  <!-- ══ ROOT ══ -->
+  <rect x="350" y="54" width="260" height="38" rx="19" fill="#1A5C35"/>
+  <text x="480" y="77" text-anchor="middle" fill="white" font-weight="700" font-size="14">AgriSense App</text>
+  <line x1="480" y1="92" x2="480" y2="110" stroke="#999" stroke-width="2"/>
+  <line x1="150" y1="110" x2="810" y2="110" stroke="#999" stroke-width="2"/>
+  <line x1="150" y1="110" x2="150" y2="126" stroke="#999" stroke-width="2"/>
+  <line x1="810" y1="110" x2="810" y2="126" stroke="#999" stroke-width="2"/>
+
+  <!-- ══ SECTION: ENTRY POINTS ══ -->
+  <rect x="80" y="122" width="800" height="22" rx="6" fill="#E0E0E0"/>
+  <text x="480" y="137" text-anchor="middle" fill="#444" font-size="10" font-weight="700" letter-spacing="1">ENTRY POINTS</text>
+
+  <!-- New User -->
+  <rect x="90" y="152" width="360" height="110" rx="8" fill="#E8F5E9" stroke="#66D575" stroke-width="1.5"/>
+  <text x="270" y="172" text-anchor="middle" fill="#2A8139" font-size="12" font-weight="700">New User — Onboarding</text>
+  <text x="110" y="190" fill="#444" font-size="10">1. Splash Screen</text>
+  <text x="110" y="205" fill="#444" font-size="10">2. Select Language  (EN / RW / FR)</text>
+  <text x="110" y="220" fill="#444" font-size="10">3. Select Role  (Farmer / Landowner / Trader)</text>
+  <text x="110" y="235" fill="#444" font-size="10">4. Choose District  (30 Rwanda districts)</text>
+  <text x="110" y="250" fill="#444" font-size="10">5. Phone Number  →  OTP  →  Profile Created  →  Home</text>
+
+  <!-- Returning User -->
+  <rect x="510" y="152" width="360" height="110" rx="8" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1.5"/>
+  <text x="690" y="172" text-anchor="middle" fill="#1565C0" font-size="12" font-weight="700">Returning User — Login</text>
+  <text x="530" y="190" fill="#444" font-size="10">1. Splash Screen</text>
+  <text x="530" y="205" fill="#444" font-size="10">2. "Already have account?" → Login Screen</text>
+  <text x="530" y="220" fill="#444" font-size="10">3. Enter Phone Number</text>
+  <text x="530" y="235" fill="#444" font-size="10">4. OTP Verification</text>
+  <text x="530" y="250" fill="#444" font-size="10">5. Profile loaded from Firestore  →  Home</text>
+
+  <!-- ══ SECTION: MAIN TABS ══ -->
+  <rect x="80" y="278" width="800" height="22" rx="6" fill="#E0E0E0"/>
+  <text x="480" y="293" text-anchor="middle" fill="#444" font-size="10" font-weight="700" letter-spacing="1">MAIN APP — 5 NAVIGATION TABS</text>
+
+  <!-- TAB HEADERS -->
+  <!-- Home -->
+  <rect x="80" y="308" width="148" height="28" rx="7" fill="#2A8139"/>
+  <text x="154" y="326" text-anchor="middle" fill="white" font-weight="700" font-size="11">Home</text>
+  <!-- Weather -->
+  <rect x="236" y="308" width="148" height="28" rx="7" fill="#1565C0"/>
+  <text x="310" y="326" text-anchor="middle" fill="white" font-weight="700" font-size="11">Weather</text>
+  <!-- Learn -->
+  <rect x="392" y="308" width="148" height="28" rx="7" fill="#6A1B9A"/>
+  <text x="466" y="326" text-anchor="middle" fill="white" font-weight="700" font-size="11">Learn</text>
+  <!-- Community -->
+  <rect x="548" y="308" width="148" height="28" rx="7" fill="#00695C"/>
+  <text x="622" y="326" text-anchor="middle" fill="white" font-weight="700" font-size="11">Community</text>
+  <!-- Profile -->
+  <rect x="704" y="308" width="176" height="28" rx="7" fill="#E65100"/>
+  <text x="792" y="326" text-anchor="middle" fill="white" font-weight="700" font-size="11">Profile</text>
+
+  <!-- TAB ITEMS: Home -->
+  <rect x="80" y="344" width="148" height="220" rx="6" fill="#E8F5E9" stroke="#66D575" stroke-width="1.5"/>
+  <text x="100" y="362" fill="#1A1F1A" font-size="9.5">Greeting + Location</text>
+  <line x1="90" y1="368" x2="220" y2="368" stroke="#C8E6C9" stroke-width="1"/>
+  <text x="100" y="382" fill="#1A1F1A" font-size="9.5">Forecast Card</text>
+  <text x="100" y="394" fill="#666" font-size="8.5">Good / Caution / Severe</text>
+  <line x1="90" y1="400" x2="220" y2="400" stroke="#C8E6C9" stroke-width="1"/>
+  <text x="100" y="414" fill="#1A1F1A" font-size="9.5">Severe Weather Alert</text>
+  <line x1="90" y1="420" x2="220" y2="420" stroke="#C8E6C9" stroke-width="1"/>
+  <text x="100" y="434" fill="#1A1F1A" font-size="9.5">Daily Tip (rotates daily)</text>
+  <line x1="90" y1="440" x2="220" y2="440" stroke="#C8E6C9" stroke-width="1"/>
+  <text x="100" y="454" fill="#1A1F1A" font-size="9.5">Continue Learning</text>
+  <text x="100" y="466" fill="#666" font-size="8.5">Horizontal scroll row</text>
+  <line x1="90" y1="472" x2="220" y2="472" stroke="#C8E6C9" stroke-width="1"/>
+  <text x="100" y="486" fill="#1A1F1A" font-size="9.5">Community Preview</text>
+  <text x="100" y="498" fill="#666" font-size="8.5">Latest post snippet</text>
+  <line x1="90" y1="504" x2="220" y2="504" stroke="#C8E6C9" stroke-width="1"/>
+  <text x="100" y="518" fill="#1A1F1A" font-size="9.5">Tab nav shortcuts</text>
+  <text x="100" y="530" fill="#666" font-size="8.5">Details / All lessons / See all</text>
+
+  <!-- TAB ITEMS: Weather -->
+  <rect x="236" y="344" width="148" height="220" rx="6" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1.5"/>
+  <text x="256" y="362" fill="#1A1F1A" font-size="9.5">District Selector</text>
+  <text x="256" y="374" fill="#666" font-size="8.5">30 Rwanda districts</text>
+  <line x1="246" y1="380" x2="376" y2="380" stroke="#BBDEFB" stroke-width="1"/>
+  <text x="256" y="394" fill="#1A1F1A" font-size="9.5">Live Temperature</text>
+  <text x="256" y="406" fill="#666" font-size="8.5">Condition emoji + feels like</text>
+  <line x1="246" y1="412" x2="376" y2="412" stroke="#BBDEFB" stroke-width="1"/>
+  <text x="256" y="426" fill="#1A1F1A" font-size="9.5">Weather Stats</text>
+  <text x="256" y="438" fill="#666" font-size="8.5">Humidity / Rain / Wind / UV</text>
+  <line x1="246" y1="444" x2="376" y2="444" stroke="#BBDEFB" stroke-width="1"/>
+  <text x="256" y="458" fill="#1A1F1A" font-size="9.5">Advisory Text</text>
+  <text x="256" y="470" fill="#666" font-size="8.5">English + Kinyarwanda</text>
+  <line x1="246" y1="476" x2="376" y2="476" stroke="#BBDEFB" stroke-width="1"/>
+  <text x="256" y="490" fill="#1A1F1A" font-size="9.5">7-Day Forecast Strip</text>
+  <line x1="246" y1="496" x2="376" y2="496" stroke="#BBDEFB" stroke-width="1"/>
+  <text x="256" y="510" fill="#1A1F1A" font-size="9.5">Loading + Error States</text>
+  <text x="256" y="522" fill="#666" font-size="8.5">Retry button</text>
+
+  <!-- TAB ITEMS: Learn -->
+  <rect x="392" y="344" width="148" height="220" rx="6" fill="#EDE7F6" stroke="#CE93D8" stroke-width="1.5"/>
+  <text x="412" y="362" fill="#1A1F1A" font-size="9.5">Stats Bar</text>
+  <text x="412" y="374" fill="#666" font-size="8.5">Completed / In Progress / New</text>
+  <line x1="402" y1="380" x2="532" y2="380" stroke="#E1BEE7" stroke-width="1"/>
+  <text x="412" y="394" fill="#1A1F1A" font-size="9.5">Women's Pathway Banner</text>
+  <line x1="402" y1="400" x2="532" y2="400" stroke="#E1BEE7" stroke-width="1"/>
+  <text x="412" y="414" fill="#1A1F1A" font-size="9.5">Filter Chips</text>
+  <text x="412" y="426" fill="#666" font-size="8.5">Topic + Women's filter</text>
+  <line x1="402" y1="432" x2="532" y2="432" stroke="#E1BEE7" stroke-width="1"/>
+  <text x="412" y="446" fill="#1A1F1A" font-size="9.5">Search Lessons</text>
+  <text x="412" y="458" fill="#666" font-size="8.5">Live filter by keyword</text>
+  <line x1="402" y1="464" x2="532" y2="464" stroke="#E1BEE7" stroke-width="1"/>
+  <text x="412" y="478" fill="#1A1F1A" font-size="9.5">Lesson List</text>
+  <text x="412" y="490" fill="#666" font-size="8.5">Firestore dynamic content</text>
+  <line x1="402" y1="496" x2="532" y2="496" stroke="#E1BEE7" stroke-width="1"/>
+  <text x="412" y="510" fill="#6A1B9A" font-size="9.5" font-style="italic">→ Lesson Detail Screen</text>
+
+  <!-- TAB ITEMS: Community -->
+  <rect x="548" y="344" width="148" height="220" rx="6" fill="#E0F2F1" stroke="#80CBC4" stroke-width="1.5"/>
+  <text x="568" y="362" fill="#1A1F1A" font-size="9.5">Stats Bar</text>
+  <text x="568" y="374" fill="#666" font-size="8.5">Farmers / Questions / Districts</text>
+  <line x1="558" y1="380" x2="688" y2="380" stroke="#B2DFDB" stroke-width="1"/>
+  <text x="568" y="394" fill="#1A1F1A" font-size="9.5">Live Posts Feed</text>
+  <text x="568" y="406" fill="#666" font-size="8.5">Firestore real-time stream</text>
+  <line x1="558" y1="412" x2="688" y2="412" stroke="#B2DFDB" stroke-width="1"/>
+  <text x="568" y="426" fill="#1A1F1A" font-size="9.5">Upvote Posts</text>
+  <text x="568" y="438" fill="#666" font-size="8.5">Atomic Firestore transaction</text>
+  <line x1="558" y1="444" x2="688" y2="444" stroke="#B2DFDB" stroke-width="1"/>
+  <text x="568" y="458" fill="#1A1F1A" font-size="9.5">Search Posts</text>
+  <text x="568" y="470" fill="#666" font-size="8.5">Filter by keyword</text>
+  <line x1="558" y1="476" x2="688" y2="476" stroke="#B2DFDB" stroke-width="1"/>
+  <text x="568" y="490" fill="#1A1F1A" font-size="9.5">Ask Question</text>
+  <text x="568" y="502" fill="#666" font-size="8.5">EN + Kinyarwanda fields</text>
+  <line x1="558" y1="508" x2="688" y2="508" stroke="#B2DFDB" stroke-width="1"/>
+  <text x="568" y="522" fill="#1A1F1A" font-size="9.5">Post Validation</text>
+  <text x="568" y="534" fill="#666" font-size="8.5">Min length + empty checks</text>
+
+  <!-- TAB ITEMS: Profile -->
+  <rect x="704" y="344" width="176" height="220" rx="6" fill="#FFF3E0" stroke="#FFCC80" stroke-width="1.5"/>
+  <text x="724" y="362" fill="#1A1F1A" font-size="9.5">User Info Card</text>
+  <text x="724" y="374" fill="#666" font-size="8.5">Name / Phone / District / Role</text>
+  <line x1="714" y1="380" x2="872" y2="380" stroke="#FFE082" stroke-width="1"/>
+  <text x="724" y="394" fill="#1A1F1A" font-size="9.5">Learning Progress</text>
+  <text x="724" y="406" fill="#666" font-size="8.5">Completed / In Progress bar</text>
+  <line x1="714" y1="412" x2="872" y2="412" stroke="#FFE082" stroke-width="1"/>
+  <text x="724" y="426" fill="#1A1F1A" font-size="9.5">My Crops</text>
+  <text x="724" y="438" fill="#666" font-size="8.5">Chip list of selected crops</text>
+  <line x1="714" y1="444" x2="872" y2="444" stroke="#FFE082" stroke-width="1"/>
+  <text x="724" y="458" fill="#1A1F1A" font-size="9.5">Language Switcher</text>
+  <text x="724" y="470" fill="#666" font-size="8.5">EN / RW / FR — instant switch</text>
+  <line x1="714" y1="476" x2="872" y2="476" stroke="#FFE082" stroke-width="1"/>
+  <text x="724" y="490" fill="#1A1F1A" font-size="9.5">Settings</text>
+  <text x="724" y="502" fill="#666" font-size="8.5">Notifications / Offline / Location</text>
+  <line x1="714" y1="508" x2="872" y2="508" stroke="#FFE082" stroke-width="1"/>
+  <rect x="714" y="514" width="156" height="40" rx="5" fill="#FFE0C2" stroke="#FF9E42"/>
+  <text x="792" y="530" text-anchor="middle" fill="#E65100" font-size="9.5" font-weight="700">Admin Panel</text>
+  <text x="792" y="544" text-anchor="middle" fill="#666" font-size="8.5">(admin users only)</text>
+
+  <!-- ══ SECTION: LESSON DETAIL ══ -->
+  <rect x="80" y="578" width="800" height="22" rx="6" fill="#E0E0E0"/>
+  <text x="480" y="593" text-anchor="middle" fill="#444" font-size="10" font-weight="700" letter-spacing="1">LESSON DETAIL SCREEN</text>
+
+  <rect x="80" y="608" width="148" height="68" rx="6" fill="#EDE7F6" stroke="#CE93D8" stroke-width="1.5"/>
+  <text x="154" y="625" text-anchor="middle" fill="#4A148C" font-size="10" font-weight="700">Hero Image</text>
+  <text x="154" y="640" text-anchor="middle" fill="#555" font-size="9">Gradient + emoji</text>
+  <text x="154" y="653" text-anchor="middle" fill="#555" font-size="9">Title overlay</text>
+  <text x="154" y="666" text-anchor="middle" fill="#555" font-size="9">Level + crop tag</text>
+
+  <rect x="236" y="608" width="148" height="68" rx="6" fill="#EDE7F6" stroke="#CE93D8" stroke-width="1.5"/>
+  <text x="310" y="625" text-anchor="middle" fill="#4A148C" font-size="10" font-weight="700">Progress Bar</text>
+  <text x="310" y="640" text-anchor="middle" fill="#555" font-size="9">% complete</text>
+  <text x="310" y="653" text-anchor="middle" fill="#555" font-size="9">Synced to Firestore</text>
+  <text x="310" y="666" text-anchor="middle" fill="#555" font-size="9">Per user / per lesson</text>
+
+  <rect x="392" y="608" width="148" height="68" rx="6" fill="#EDE7F6" stroke="#CE93D8" stroke-width="1.5"/>
+  <text x="466" y="625" text-anchor="middle" fill="#4A148C" font-size="10" font-weight="700">Audio Player</text>
+  <text x="466" y="640" text-anchor="middle" fill="#555" font-size="9">Play / Pause</text>
+  <text x="466" y="653" text-anchor="middle" fill="#555" font-size="9">Progress slider</text>
+  <text x="466" y="666" text-anchor="middle" fill="#555" font-size="9">Time display</text>
+
+  <rect x="548" y="608" width="148" height="68" rx="6" fill="#EDE7F6" stroke="#CE93D8" stroke-width="1.5"/>
+  <text x="622" y="625" text-anchor="middle" fill="#4A148C" font-size="10" font-weight="700">Description</text>
+  <text x="622" y="640" text-anchor="middle" fill="#555" font-size="9">Language-aware text</text>
+  <text x="622" y="653" text-anchor="middle" fill="#555" font-size="9">EN + Kinyarwanda</text>
+  <text x="622" y="666" text-anchor="middle" fill="#555" font-size="9">Based on user language</text>
+
+  <rect x="704" y="608" width="176" height="68" rx="6" fill="#EDE7F6" stroke="#CE93D8" stroke-width="1.5"/>
+  <text x="792" y="625" text-anchor="middle" fill="#4A148C" font-size="10" font-weight="700">Key Takeaways</text>
+  <text x="792" y="640" text-anchor="middle" fill="#555" font-size="9">4 bullet points</text>
+  <text x="792" y="653" text-anchor="middle" fill="#555" font-size="9">Per lesson content</text>
+  <text x="792" y="666" text-anchor="middle" fill="#555" font-size="9">Start / Continue button</text>
+
+  <!-- ══ SECTION: ADMIN ══ -->
+  <rect x="80" y="692" width="800" height="22" rx="6" fill="#E0E0E0"/>
+  <text x="480" y="707" text-anchor="middle" fill="#444" font-size="10" font-weight="700" letter-spacing="1">ADMIN PANEL (ADMIN USERS ONLY)</text>
+
+  <rect x="80" y="722" width="248" height="80" rx="8" fill="#FFF3E0" stroke="#FFCC80" stroke-width="1.5"/>
+  <text x="204" y="742" text-anchor="middle" fill="#E65100" font-size="11" font-weight="700">Lessons Tab</text>
+  <text x="100" y="758" fill="#444" font-size="9.5">• List all lessons (active + hidden)</text>
+  <text x="100" y="772" fill="#444" font-size="9.5">• Add new lesson (full form)</text>
+  <text x="100" y="786" fill="#444" font-size="9.5">• Edit / Hide / Show / Delete</text>
+
+  <rect x="356" y="722" width="248" height="80" rx="8" fill="#FFF3E0" stroke="#FFCC80" stroke-width="1.5"/>
+  <text x="480" y="742" text-anchor="middle" fill="#E65100" font-size="11" font-weight="700">Tips Tab</text>
+  <text x="376" y="758" fill="#444" font-size="9.5">• List all daily tips</text>
+  <text x="376" y="772" fill="#444" font-size="9.5">• Add / Edit tips (EN + Kinyarwanda)</text>
+  <text x="376" y="786" fill="#444" font-size="9.5">• Delete tip</text>
+
+  <rect x="632" y="722" width="248" height="80" rx="8" fill="#FFF3E0" stroke="#FFCC80" stroke-width="1.5"/>
+  <text x="756" y="742" text-anchor="middle" fill="#E65100" font-size="11" font-weight="700">Community Tab</text>
+  <text x="652" y="758" fill="#444" font-size="9.5">• View all community posts</text>
+  <text x="652" y="772" fill="#444" font-size="9.5">• See upvote + reply counts</text>
+  <text x="652" y="786" fill="#444" font-size="9.5">• Delete inappropriate posts</text>
+
+  <!-- ══ SECTION: DATA ══ -->
+  <rect x="80" y="820" width="800" height="22" rx="6" fill="#E0E0E0"/>
+  <text x="480" y="835" text-anchor="middle" fill="#444" font-size="10" font-weight="700" letter-spacing="1">DATA LAYER &amp; SERVICES</text>
+
+  <rect x="80"  y="850" width="124" height="72" rx="6" fill="#ECEFF1" stroke="#90A4AE" stroke-width="1.5"/>
+  <text x="142" y="868" text-anchor="middle" fill="#263238" font-size="10" font-weight="700">Firebase Auth</text>
+  <text x="142" y="882" text-anchor="middle" fill="#555" font-size="8.5">Phone OTP</text>
+  <text x="142" y="895" text-anchor="middle" fill="#555" font-size="8.5">Anonymous login</text>
+  <text x="142" y="908" text-anchor="middle" fill="#555" font-size="8.5">Session mgmt</text>
+
+  <rect x="212" y="850" width="124" height="72" rx="6" fill="#ECEFF1" stroke="#90A4AE" stroke-width="1.5"/>
+  <text x="274" y="868" text-anchor="middle" fill="#263238" font-size="10" font-weight="700">Firestore (users)</text>
+  <text x="274" y="882" text-anchor="middle" fill="#555" font-size="8.5">users / progress</text>
+  <text x="274" y="895" text-anchor="middle" fill="#555" font-size="8.5">Config / admin</text>
+  <text x="274" y="908" text-anchor="middle" fill="#555" font-size="8.5">Security rules</text>
+
+  <rect x="344" y="850" width="124" height="72" rx="6" fill="#ECEFF1" stroke="#90A4AE" stroke-width="1.5"/>
+  <text x="406" y="868" text-anchor="middle" fill="#263238" font-size="10" font-weight="700">Firestore (content)</text>
+  <text x="406" y="882" text-anchor="middle" fill="#555" font-size="8.5">lessons / tips</text>
+  <text x="406" y="895" text-anchor="middle" fill="#555" font-size="8.5">Admin-managed</text>
+  <text x="406" y="908" text-anchor="middle" fill="#555" font-size="8.5">Dynamic stream</text>
+
+  <rect x="476" y="850" width="124" height="72" rx="6" fill="#ECEFF1" stroke="#90A4AE" stroke-width="1.5"/>
+  <text x="538" y="868" text-anchor="middle" fill="#263238" font-size="10" font-weight="700">Firestore (community)</text>
+  <text x="538" y="882" text-anchor="middle" fill="#555" font-size="8.5">community_posts</text>
+  <text x="538" y="895" text-anchor="middle" fill="#555" font-size="8.5">upvotes (atomic)</text>
+  <text x="538" y="908" text-anchor="middle" fill="#555" font-size="8.5">Real-time stream</text>
+
+  <rect x="608" y="850" width="124" height="72" rx="6" fill="#ECEFF1" stroke="#90A4AE" stroke-width="1.5"/>
+  <text x="670" y="868" text-anchor="middle" fill="#263238" font-size="10" font-weight="700">OpenWeatherMap</text>
+  <text x="670" y="882" text-anchor="middle" fill="#555" font-size="8.5">Live weather API</text>
+  <text x="670" y="895" text-anchor="middle" fill="#555" font-size="8.5">30 districts mapped</text>
+  <text x="670" y="908" text-anchor="middle" fill="#555" font-size="8.5">7-day forecast</text>
+
+  <rect x="740" y="850" width="140" height="72" rx="6" fill="#ECEFF1" stroke="#90A4AE" stroke-width="1.5"/>
+  <text x="810" y="868" text-anchor="middle" fill="#263238" font-size="10" font-weight="700">SharedPreferences</text>
+  <text x="810" y="882" text-anchor="middle" fill="#555" font-size="8.5">Language / settings</text>
+  <text x="810" y="895" text-anchor="middle" fill="#555" font-size="8.5">Offline cache</text>
+  <text x="810" y="908" text-anchor="middle" fill="#555" font-size="8.5">Lesson progress local</text>
+
+  <!-- ══ SECTION: USER ROLES ══ -->
+  <rect x="80" y="938" width="800" height="22" rx="6" fill="#E0E0E0"/>
+  <text x="480" y="953" text-anchor="middle" fill="#444" font-size="10" font-weight="700" letter-spacing="1">USER ROLES &amp; PERMISSIONS</text>
+
+  <rect x="80"  y="968" width="244" height="112" rx="8" fill="#FFF8E1" stroke="#FFE082" stroke-width="1.5"/>
+  <text x="202" y="987" text-anchor="middle" fill="#4E342E" font-size="11" font-weight="700">Guest / Anonymous</text>
+  <text x="100" y="1003" fill="#555" font-size="9.5">✅  Browse weather</text>
+  <text x="100" y="1018" fill="#555" font-size="9.5">✅  View lessons (read-only)</text>
+  <text x="100" y="1033" fill="#555" font-size="9.5">✅  Read community posts</text>
+  <text x="100" y="1048" fill="#D32F2F" font-size="9.5">❌  Cannot post or upvote</text>
+  <text x="100" y="1063" fill="#D32F2F" font-size="9.5">❌  Progress not saved to cloud</text>
+
+  <rect x="358" y="968" width="244" height="112" rx="8" fill="#E8F5E9" stroke="#66D575" stroke-width="1.5"/>
+  <text x="480" y="987" text-anchor="middle" fill="#2A8139" font-size="11" font-weight="700">Registered Farmer</text>
+  <text x="378" y="1003" fill="#555" font-size="9.5">✅  All guest permissions</text>
+  <text x="378" y="1018" fill="#555" font-size="9.5">✅  Track progress (cloud sync)</text>
+  <text x="378" y="1033" fill="#555" font-size="9.5">✅  Post community questions</text>
+  <text x="378" y="1048" fill="#555" font-size="9.5">✅  Upvote posts</text>
+  <text x="378" y="1063" fill="#555" font-size="9.5">✅  Profile saved across devices</text>
+
+  <rect x="636" y="968" width="244" height="112" rx="8" fill="#FFF3E0" stroke="#FFCC80" stroke-width="1.5"/>
+  <text x="758" y="987" text-anchor="middle" fill="#E65100" font-size="11" font-weight="700">Admin</text>
+  <text x="656" y="1003" fill="#555" font-size="9.5">✅  All farmer permissions</text>
+  <text x="656" y="1018" fill="#555" font-size="9.5">✅  Add / edit / delete lessons</text>
+  <text x="656" y="1033" fill="#555" font-size="9.5">✅  Manage daily tips</text>
+  <text x="656" y="1048" fill="#555" font-size="9.5">✅  Moderate community posts</text>
+  <text x="656" y="1063" fill="#555" font-size="9.5">✅  Access Content Manager panel</text>
+
+  <!-- Footer -->
+  <text x="480" y="1092" text-anchor="middle" fill="#AAA" font-size="9">AgriSense MVP — Information Architecture © 2026 Inclusivity Solutions</text>
+</svg>

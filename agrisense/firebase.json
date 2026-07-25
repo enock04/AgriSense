@@ -1,0 +1,1 @@
+{"flutter":{"platforms":{"android":{"default":{"projectId":"agrisense-01","appId":"1:593039816197:android:0dad5bd65f4e1291f80e6c","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"agrisense-01","configurations":{"android":"1:593039816197:android:0dad5bd65f4e1291f80e6c"}}}}},"firestore":{"rules":"firestore.rules"}}

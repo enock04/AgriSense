@@ -1,4 +1,7 @@
-import '../models/models.dart';
+import '../domain/entities/community_post.dart';
+import '../domain/entities/crop.dart';
+import '../domain/entities/lesson.dart';
+import '../domain/entities/weather.dart';
 
 class MockData {
   MockData._();
@@ -238,42 +241,42 @@ class MockData {
   // ── Community Posts ────────────────────────────────────────────────────────
   static const List<CommunityPost> communityPosts = [
     CommunityPost(
-      id: 'p1', userName: 'Gasana Jean-Pierre', userInitials: 'GJ',
+      id: 'p1', userId: 'u1', userName: 'Gasana Jean-Pierre', userInitials: 'GJ',
       district: 'Musanze', upvotes: 24, replyCount: 8,
       timeAgo: '2 hours ago', timeAgoKin: 'Amasaha 2 ashize',
       question: 'My maize leaves are turning yellow from the bottom — could this be nitrogen deficiency or overwatering? This started 3 days after planting.',
       questionKin: 'Amakabi y\'ibigori yanjye arahuha uhereye hasi — bishobora kuba ubunure bwa azote buke cyangwa amazi menshi? Bitangiriye iminsi 3 nyuma yo gutera.',
     ),
     CommunityPost(
-      id: 'p2', userName: 'Mukamana Vestine', userInitials: 'MV',
+      id: 'p2', userId: 'u2', userName: 'Mukamana Vestine', userInitials: 'MV',
       district: 'Huye', upvotes: 17, replyCount: 5,
       timeAgo: '4 hours ago', timeAgoKin: 'Amasaha 4 ashize',
       question: 'What is the best time to harvest beans in the Southern Province this season A? I am seeing pods turning brown.',
       questionKin: 'Ni ryari igihe cyiza cyo gusarura ibishyimbo mu ntara y\'amajyepfo uyu mwaka wa A? Ndeba inzunguru zihinduka urukaka.',
     ),
     CommunityPost(
-      id: 'p3', userName: 'Habimana Pierre', userInitials: 'HP',
+      id: 'p3', userId: 'u3', userName: 'Habimana Pierre', userInitials: 'HP',
       district: 'Nyagatare', upvotes: 31, replyCount: 12,
       timeAgo: '1 day ago', timeAgoKin: 'Umunsi 1 ushize',
       question: 'Has anyone tried drip irrigation for tomatoes in the Eastern Province? I want to expand my 0.5 ha plot and wondering if the investment is worth it.',
       questionKin: 'Umuntu n\'umwe wagerageje ubunyunyuzi bw\'amazi ku nyanya mu ntara y\'iburasirazuba? Ndashaka gukuza inzuri yanjye ya 0.5 ha.',
     ),
     CommunityPost(
-      id: 'p4', userName: 'Uwimana Claudette', userInitials: 'UC',
+      id: 'p4', userId: 'u4', userName: 'Uwimana Claudette', userInitials: 'UC',
       district: 'Gasabo', upvotes: 9, replyCount: 3,
       timeAgo: '2 days ago', timeAgoKin: 'Iminsi 2 ishize',
       question: 'Where can I sell my surplus sorghum in Kigali? I have about 200 kg from this season and want a fair price.',
       questionKin: 'Ni he nabona amasoko yo kugurisha amashaza yanjye muri Kigali? Mfite ngo kg 200 z\'iki gisekuru kandi nshaka igiciro cyiza.',
     ),
     CommunityPost(
-      id: 'p5', userName: 'Ntwari Emmanuel', userInitials: 'NE',
+      id: 'p5', userId: 'u5', userName: 'Ntwari Emmanuel', userInitials: 'NE',
       district: 'Rubavu', upvotes: 45, replyCount: 19,
       timeAgo: '3 days ago', timeAgoKin: 'Iminsi 3 ishize',
       question: 'After the heavy rains last week my Irish potato field has what looks like late blight — grey spots with white rings on the leaves. What should I spray?',
       questionKin: 'Nyuma y\'imvura nini y\'inshuti ishize, inzu yanjye y\'ibirayi ifite ibironda biremba na rimwe birimo ingano zera. Ni iki nakwasya?',
     ),
     CommunityPost(
-      id: 'p6', userName: 'Ingabire Odette', userInitials: 'IO',
+      id: 'p6', userId: 'u6', userName: 'Ingabire Odette', userInitials: 'IO',
       district: 'Muhanga', upvotes: 14, replyCount: 6,
       timeAgo: '4 days ago', timeAgoKin: 'Iminsi 4 ishize',
       question: 'Can I still join a VSLA group mid-year? I want to start saving for next season\'s inputs.',

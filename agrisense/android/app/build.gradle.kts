@@ -8,8 +8,8 @@ if (keyPropertiesFile.exists()) {
 }
 plugins {
     id("com.android.application")
-    id("kotlin-android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    // Flutter's built-in Kotlin support — do NOT add id("kotlin-android") here.
+    // The Flutter Gradle Plugin must be applied after the Android plugin.
     id("dev.flutter.flutter-gradle-plugin")
     id("com.google.gms.google-services")
 }
@@ -33,7 +33,13 @@ android {
         applicationId = "com.agrisense.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+        // NOTE: Flutter's Gradle "Upgrading build.gradle.kts" auto-migration has silently
+        // reverted this back to `flutter.minSdkVersion` (which resolves to 24, not 23) on
+        // every one of several occasions during this project's development. There is no
+        // supported override for flutter.minSdkVersion in the Flutter SDK itself — always
+        // re-check this line after any `flutter run`/`flutter build` output that mentions
+        // "Upgrading build.gradle.kts", especially right before a release build.
+        minSdk = flutter.minSdkVersion  // Firebase Auth requires API 23+ — do not replace with flutter.minSdkVersion (see note above)
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName

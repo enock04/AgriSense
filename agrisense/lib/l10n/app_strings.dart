@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../providers/app_provider.dart';
+import '../presentation/providers/app_provider.dart';
 import 'package:provider/provider.dart';
 
 // ── Extension for easy access ──────────────────────────────────────────────

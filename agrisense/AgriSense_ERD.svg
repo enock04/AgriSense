@@ -1,0 +1,196 @@
+<svg width="840" height="810" viewBox="0 0 840 810" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',Inter,Arial,sans-serif">
+  <defs>
+    <marker id="fk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1D4ED8"/>
+    </marker>
+    <marker id="sub" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1A5C35"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="840" height="810" fill="#F0F5F2"/>
+
+  <!-- Title -->
+  <text x="420" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="#1A5C35" letter-spacing="0.3">AgriSense — Firebase / Firestore Entity-Relationship Diagram</text>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- RELATIONSHIP LINES  (drawn before entity boxes) -->
+  <!-- ═══════════════════════════════════════════════ -->
+
+  <!-- 1. FK: community_posts.userId → users.uid  N:1 -->
+  <path d="M275,106 L282,106 L282,88 L290,88" fill="none" stroke="#1D4ED8" stroke-width="1.5" marker-end="url(#fk)"/>
+  <text x="278" y="99" font-size="8" fill="#1D4ED8" text-anchor="middle">N:1</text>
+
+  <!-- 2. Subcollection: community_posts → upvotes  1:N -->
+  <line x1="145" y1="268" x2="145" y2="280" stroke="#1A5C35" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#sub)"/>
+  <text x="162" y="275" font-size="8" fill="#1A5C35">1:N</text>
+
+  <!-- 3. Subcollection: users → progress  1:N -->
+  <line x1="420" y1="232" x2="420" y2="244" stroke="#1A5C35" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#sub)"/>
+  <text x="437" y="239" font-size="8" fill="#1A5C35">1:N</text>
+
+  <!-- 4. FK: progress.lessonId → lessons.id  N:1 -->
+  <path d="M550,292 L557,292 L557,88 L565,88" fill="none" stroke="#1D4ED8" stroke-width="1.5" marker-end="url(#fk)"/>
+  <text x="557" y="192" font-size="8" fill="#1D4ED8" text-anchor="middle" transform="rotate(-90,557,192)">N:1</text>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- ENTITY: community_posts  x=15,y=40,260x228 -->
+  <!-- ══════════════════════════════════════════ -->
+  <rect x="15" y="40" width="260" height="228" rx="6" fill="white" stroke="#94C4A8" stroke-width="1.5"/>
+  <rect x="15" y="40" width="260" height="30" rx="6" fill="#1A5C35"/>
+  <rect x="15" y="64" width="260" height="6" fill="#1A5C35"/>
+  <text x="145" y="59" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="700" fill="white">community_posts</text>
+  <line x1="15" y1="70" x2="275" y2="70" stroke="#E5E7EB" stroke-width="0.5"/>
+
+  <!-- id PK y=88 -->
+  <rect x="22" y="78" width="6" height="6" rx="1" fill="#B45309"/>
+  <text x="33" y="88" font-size="9" font-weight="700" fill="#92400E">id : String  [PK / document ID]</text>
+  <!-- userId FK y=106 -->
+  <rect x="22" y="96" width="6" height="6" rx="1" fill="#1D4ED8"/>
+  <text x="33" y="106" font-size="9" font-style="italic" fill="#1E40AF">userId → users.uid  [FK]</text>
+  <!-- userName y=124 -->
+  <text x="22" y="124" font-size="9" fill="#374151">  userName : String</text>
+  <text x="22" y="142" font-size="9" fill="#374151">  userInitials : String</text>
+  <text x="22" y="160" font-size="9" fill="#374151">  district : String</text>
+  <text x="22" y="178" font-size="9" fill="#374151">  question : String</text>
+  <text x="22" y="196" font-size="9" fill="#374151">  questionKin : String  (Kinyarwanda)</text>
+  <text x="22" y="214" font-size="9" fill="#374151">  upvoteCount : Int</text>
+  <text x="22" y="232" font-size="9" fill="#374151">  replyCount : Int</text>
+  <text x="22" y="250" font-size="9" fill="#374151">  createdAt : Timestamp</text>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- ENTITY: upvotes subcollection  x=15,y=280,260x102 -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <rect x="15" y="280" width="260" height="102" rx="6" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+  <rect x="15" y="280" width="260" height="30" rx="6" fill="#2E7D50"/>
+  <rect x="15" y="304" width="260" height="6" fill="#2E7D50"/>
+  <text x="145" y="299" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="700" fill="white">community_posts/{id}/upvotes</text>
+  <line x1="15" y1="310" x2="275" y2="310" stroke="#BBF7D0" stroke-width="0.5"/>
+
+  <rect x="22" y="318" width="6" height="6" rx="1" fill="#B45309"/>
+  <text x="33" y="328" font-size="9" font-weight="700" fill="#92400E">userId : String  [PK / doc ID = upvoter UID]</text>
+  <text x="22" y="346" font-size="9" fill="#374151">  uid : String</text>
+  <text x="22" y="364" font-size="9" fill="#374151">  at : Timestamp</text>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- ENTITY: users  x=290,y=40,260x192         -->
+  <!-- ══════════════════════════════════════════ -->
+  <rect x="290" y="40" width="260" height="192" rx="6" fill="white" stroke="#94C4A8" stroke-width="1.5"/>
+  <rect x="290" y="40" width="260" height="30" rx="6" fill="#1A5C35"/>
+  <rect x="290" y="64" width="260" height="6" fill="#1A5C35"/>
+  <text x="420" y="59" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="700" fill="white">users</text>
+  <line x1="290" y1="70" x2="550" y2="70" stroke="#E5E7EB" stroke-width="0.5"/>
+
+  <rect x="297" y="78" width="6" height="6" rx="1" fill="#B45309"/>
+  <text x="308" y="88" font-size="9" font-weight="700" fill="#92400E">uid : String  [PK = Firebase Auth UID]</text>
+  <text x="297" y="106" font-size="9" fill="#374151">  name : String</text>
+  <text x="297" y="124" font-size="9" fill="#374151">  phone : String</text>
+  <text x="297" y="142" font-size="9" fill="#374151">  farmerType : enum  (farmer|landowner|trader)</text>
+  <text x="297" y="160" font-size="9" fill="#374151">  crops : Array&lt;{id,name,kinyarwanda,emoji}&gt;</text>
+  <text x="297" y="178" font-size="9" fill="#374151">  district : String</text>
+  <text x="297" y="196" font-size="9" fill="#374151">  language : String  (rw | en)</text>
+  <text x="297" y="214" font-size="9" fill="#374151">  updatedAt : Timestamp</text>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- ENTITY: progress subcollection  x=290,y=244  -->
+  <!-- ══════════════════════════════════════════════ -->
+  <rect x="290" y="244" width="260" height="120" rx="6" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+  <rect x="290" y="244" width="260" height="30" rx="6" fill="#2E7D50"/>
+  <rect x="290" y="268" width="260" height="6" fill="#2E7D50"/>
+  <text x="420" y="263" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="700" fill="white">users/{uid}/progress</text>
+  <line x1="290" y1="274" x2="550" y2="274" stroke="#BBF7D0" stroke-width="0.5"/>
+
+  <rect x="297" y="282" width="6" height="6" rx="1" fill="#B45309"/>
+  <text x="308" y="292" font-size="9" font-weight="700" fill="#92400E">lessonId : String  [PK / doc ID → lessons.id]</text>
+  <text x="297" y="310" font-size="9" fill="#374151">  progress : Double  (0.0 – 1.0)</text>
+  <text x="297" y="328" font-size="9" fill="#374151">  completed : Boolean</text>
+  <text x="297" y="346" font-size="9" fill="#374151">  updatedAt : Timestamp</text>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- ENTITY: lessons  x=565,y=40,260x354       -->
+  <!-- ══════════════════════════════════════════ -->
+  <rect x="565" y="40" width="260" height="354" rx="6" fill="white" stroke="#94C4A8" stroke-width="1.5"/>
+  <rect x="565" y="40" width="260" height="30" rx="6" fill="#1A5C35"/>
+  <rect x="565" y="64" width="260" height="6" fill="#1A5C35"/>
+  <text x="695" y="59" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="700" fill="white">lessons</text>
+  <line x1="565" y1="70" x2="825" y2="70" stroke="#E5E7EB" stroke-width="0.5"/>
+
+  <rect x="572" y="78" width="6" height="6" rx="1" fill="#B45309"/>
+  <text x="583" y="88" font-size="9" font-weight="700" fill="#92400E">id : String  [PK / document ID]</text>
+  <text x="572" y="106" font-size="9" fill="#374151">  title : String</text>
+  <text x="572" y="124" font-size="9" fill="#374151">  titleKin : String  (Kinyarwanda)</text>
+  <text x="572" y="142" font-size="9" fill="#374151">  cropTag : String</text>
+  <text x="572" y="160" font-size="9" fill="#374151">  topicTag : String</text>
+  <text x="572" y="178" font-size="9" fill="#374151">  level : enum  (beginner|intermediate|advanced)</text>
+  <text x="572" y="196" font-size="9" fill="#374151">  formats : Array&lt;String&gt;  (text|video|audio)</text>
+  <text x="572" y="214" font-size="9" fill="#374151">  durationMinutes : Int</text>
+  <text x="572" y="232" font-size="9" fill="#374151">  emoji : String</text>
+  <text x="572" y="250" font-size="9" fill="#374151">  description : String</text>
+  <text x="572" y="268" font-size="9" fill="#374151">  descriptionKin : String</text>
+  <text x="572" y="286" font-size="9" fill="#374151">  isNew : Boolean</text>
+  <text x="572" y="304" font-size="9" fill="#374151">  isWomensPathway : Boolean</text>
+  <text x="572" y="322" font-size="9" fill="#374151">  order : Int  (sort position)</text>
+  <text x="572" y="340" font-size="9" fill="#374151">  isActive : Boolean</text>
+  <text x="572" y="358" font-size="9" fill="#374151">  createdAt : Timestamp</text>
+  <text x="572" y="376" font-size="9" fill="#374151">  updatedAt : Timestamp</text>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- ENTITY: tips  x=565,y=406,260x192         -->
+  <!-- ══════════════════════════════════════════ -->
+  <rect x="565" y="406" width="260" height="192" rx="6" fill="white" stroke="#94C4A8" stroke-width="1.5"/>
+  <rect x="565" y="406" width="260" height="30" rx="6" fill="#1A5C35"/>
+  <rect x="565" y="430" width="260" height="6" fill="#1A5C35"/>
+  <text x="695" y="425" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="700" fill="white">tips</text>
+  <line x1="565" y1="436" x2="825" y2="436" stroke="#E5E7EB" stroke-width="0.5"/>
+
+  <rect x="572" y="444" width="6" height="6" rx="1" fill="#B45309"/>
+  <text x="583" y="454" font-size="9" font-weight="700" fill="#92400E">id : String  [PK / auto document ID]</text>
+  <text x="572" y="472" font-size="9" fill="#374151">  title : String</text>
+  <text x="572" y="490" font-size="9" fill="#374151">  titleKin : String  (Kinyarwanda)</text>
+  <text x="572" y="508" font-size="9" fill="#374151">  body : String</text>
+  <text x="572" y="526" font-size="9" fill="#374151">  bodyKin : String  (Kinyarwanda)</text>
+  <text x="572" y="544" font-size="9" fill="#374151">  emoji : String</text>
+  <text x="572" y="562" font-size="9" fill="#374151">  isActive : Boolean</text>
+  <text x="572" y="580" font-size="9" fill="#374151">  createdAt : Timestamp</text>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- ENTITY: Config/admin  x=565,y=610,260x102 -->
+  <!-- ══════════════════════════════════════════ -->
+  <rect x="565" y="610" width="260" height="102" rx="6" fill="white" stroke="#D1D5DB" stroke-width="1.5"/>
+  <rect x="565" y="610" width="260" height="30" rx="6" fill="#374151"/>
+  <rect x="565" y="634" width="260" height="6" fill="#374151"/>
+  <text x="695" y="629" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="700" fill="white">Config / admin</text>
+  <line x1="565" y1="640" x2="825" y2="640" stroke="#E5E7EB" stroke-width="0.5"/>
+
+  <rect x="572" y="648" width="6" height="6" rx="1" fill="#B45309"/>
+  <text x="583" y="658" font-size="9" font-weight="700" fill="#92400E">docId : 'admin'  [PK / fixed document ID]</text>
+  <text x="572" y="676" font-size="9" fill="#374151">  uids : Array&lt;String&gt;  (admin Firebase UIDs)</text>
+  <text x="572" y="694" font-size="9" fill="#374151">  phones : Array&lt;String&gt;  (admin phone numbers)</text>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- LEGEND                                     -->
+  <!-- ══════════════════════════════════════════ -->
+  <rect x="15" y="762" width="560" height="34" rx="6" fill="white" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="25" y="774" font-size="9" font-weight="700" fill="#374151">Legend:</text>
+
+  <rect x="75" y="766" width="7" height="7" rx="1" fill="#B45309"/>
+  <text x="87" y="774" font-size="9" fill="#374151">Primary Key (PK)</text>
+
+  <rect x="185" y="766" width="7" height="7" rx="1" fill="#1D4ED8"/>
+  <text x="197" y="774" font-size="9" fill="#374151">Foreign Key (FK)</text>
+
+  <line x1="295" y1="770" x2="318" y2="770" stroke="#1D4ED8" stroke-width="1.5" marker-end="url(#fk)"/>
+  <text x="324" y="774" font-size="9" fill="#374151">FK reference</text>
+
+  <line x1="395" y1="770" x2="418" y2="770" stroke="#1A5C35" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#sub)"/>
+  <text x="424" y="774" font-size="9" fill="#374151">Subcollection (1:N)</text>
+
+  <rect x="75" y="780" width="7" height="7" rx="1" fill="#2E7D50"/>
+  <text x="87" y="788" font-size="9" fill="#374151">Subcollection entity</text>
+  <rect x="185" y="780" width="7" height="7" rx="1" fill="#374151"/>
+  <text x="197" y="788" font-size="9" fill="#374151">Admin config (singleton)</text>
+
+  <!-- Version stamp -->
+  <text x="825" y="798" text-anchor="end" font-size="8" fill="#9CA3AF">AgriSense v1.0 · 2026-07-22</text>
+</svg>

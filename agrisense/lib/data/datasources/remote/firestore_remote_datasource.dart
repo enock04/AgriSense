@@ -33,6 +33,13 @@ class FirestoreRemoteDatasource {
     return snap.exists ? snap.data() as Map<String, dynamic> : null;
   }
 
+  Future<void> saveFcmToken(String uid, String token) async {
+    await _users.doc(uid).set({
+      'fcmToken': token,
+      'fcmTokenUpdatedAt': FieldValue.serverTimestamp(),
+    }, SetOptions(merge: true));
+  }
+
   // ── Lesson Progress ──────────────────────────────────────────────────────
 
   Future<void> saveLessonProgress(String lessonId, double progress) async {
@@ -104,8 +111,7 @@ class FirestoreRemoteDatasource {
     await batch.commit();
   }
 
-  // ── Lessons ──────────────────────────────────────────────────────────────
-
+  // ── Lessons ───────────
   /// No orderBy in the query itself — combining it with the isActive filter
   /// requires a composite Firestore index. Sorted client-side instead.
   Stream<List<LessonModel>> lessonsStream() {
@@ -242,3 +248,4 @@ class FirestoreRemoteDatasource {
     return false;
   }
 }
+    

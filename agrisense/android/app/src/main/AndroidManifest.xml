@@ -1,4 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Required on Android 13+ to show notifications; requested at runtime
+         via FirebaseMessaging.requestPermission() when the user turns
+         notifications on in Profile settings. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <application
         android:label="AgriSense"
         android:name="${applicationName}"
@@ -30,6 +34,12 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <!-- Default channel for FCM notifications delivered before the app
+             has ever been opened (so the channel hasn't been created yet by
+             NotificationRemoteDatasource.initialize()). -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="weather_alerts" />
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and

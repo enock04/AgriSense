@@ -111,8 +111,7 @@ class FirestoreRemoteDatasource {
     await batch.commit();
   }
 
-  // ── Lessons ──────────────────────────────────────────────────────────────
-
+  // ── Lessons ───────────
   /// No orderBy in the query itself — combining it with the isActive filter
   /// requires a composite Firestore index. Sorted client-side instead.
   Stream<List<LessonModel>> lessonsStream() {
@@ -249,3 +248,4 @@ class FirestoreRemoteDatasource {
     return false;
   }
 }
+    

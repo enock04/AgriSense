@@ -3,17 +3,20 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'firebase_options.dart';
 
 // ── Clean Architecture: Data Layer ──────────────────────────────────────────
 import 'data/datasources/local/preferences_local_datasource.dart';
 import 'data/datasources/remote/auth_remote_datasource.dart';
 import 'data/datasources/remote/firestore_remote_datasource.dart';
+import 'data/datasources/remote/notification_remote_datasource.dart';
 import 'data/repositories/auth_repository_impl.dart';
 import 'data/repositories/user_repository_impl.dart';
 import 'data/repositories/weather_repository_impl.dart';
 import 'data/repositories/lesson_repository_impl.dart';
 import 'data/repositories/community_repository_impl.dart';
+import 'data/repositories/notification_repository_impl.dart';
 import 'data/datasources/remote/weather_remote_datasource.dart';
 
 // ── Clean Architecture: Presentation Layer ──────────────────────────────────
@@ -21,6 +24,13 @@ import 'presentation/providers/app_provider.dart';
 import 'presentation/theme/app_theme.dart';
 import 'presentation/screens/onboarding/onboarding_screen.dart';
 import 'presentation/screens/shell/main_shell.dart';
+
+/// Handles FCM messages received while the app is backgrounded/terminated.
+/// Must be a top-level (or static) function — it runs in its own isolate.
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,6 +42,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   // Initialise local data source (SharedPreferences)
   final prefsLocal = PreferencesLocalDatasource();
@@ -39,16 +50,18 @@ void main() async {
 
   // ── Assemble the dependency graph ────────────────────────────────────────
   //   Data Sources
-  final authRemote      = AuthRemoteDatasource();
-  final firestoreRemote = FirestoreRemoteDatasource();
-  final weatherRemote   = WeatherRemoteDatasource();
+  final authRemote         = AuthRemoteDatasource();
+  final firestoreRemote    = FirestoreRemoteDatasource();
+  final weatherRemote      = WeatherRemoteDatasource();
+  final notificationRemote = NotificationRemoteDatasource();
 
   //   Repositories (domain interfaces → concrete implementations)
-  final authRepo      = AuthRepositoryImpl(authRemote);
-  final userRepo      = UserRepositoryImpl(firestoreRemote, prefsLocal);
-  final weatherRepo   = WeatherRepositoryImpl(weatherRemote);
-  final lessonRepo    = LessonRepositoryImpl(firestoreRemote, prefsLocal);
-  final communityRepo = CommunityRepositoryImpl(firestoreRemote);
+  final authRepo         = AuthRepositoryImpl(authRemote);
+  final userRepo         = UserRepositoryImpl(firestoreRemote, prefsLocal);
+  final weatherRepo      = WeatherRepositoryImpl(weatherRemote);
+  final lessonRepo       = LessonRepositoryImpl(firestoreRemote, prefsLocal);
+  final communityRepo    = CommunityRepositoryImpl(firestoreRemote);
+  final notificationRepo = NotificationRepositoryImpl(notificationRemote, firestoreRemote);
 
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -67,11 +80,12 @@ void main() async {
         /// no direct Firebase or Firestore calls from the UI layer.
         ChangeNotifierProvider(
           create: (_) => AppProvider(
-            authRepository:      authRepo,
-            userRepository:      userRepo,
-            weatherRepository:   weatherRepo,
-            lessonRepository:    lessonRepo,
-            communityRepository: communityRepo,
+            authRepository:         authRepo,
+            userRepository:         userRepo,
+            weatherRepository:      weatherRepo,
+            lessonRepository:       lessonRepo,
+            communityRepository:    communityRepo,
+            notificationRepository: notificationRepo,
           ),
         ),
       ],

@@ -20,6 +20,7 @@ import 'package:agrisense/domain/repositories/user_repository.dart';
 import 'package:agrisense/domain/repositories/weather_repository.dart';
 import 'package:agrisense/domain/repositories/lesson_repository.dart';
 import 'package:agrisense/domain/repositories/community_repository.dart';
+import 'package:agrisense/domain/repositories/notification_repository.dart';
 import 'package:agrisense/presentation/providers/app_provider.dart';
 import 'package:agrisense/presentation/theme/app_theme.dart';
 
@@ -97,6 +98,15 @@ class _StubCommunityRepo implements CommunityRepository {
   @override Future<void> seedPostsIfEmpty() async {}
 }
 
+class _StubNotificationRepo implements NotificationRepository {
+  @override Future<void> initialize() async {}
+  @override Future<bool> hasPermission() async => false;
+  @override Future<bool> requestPermission() async => false;
+  @override Future<void> subscribeToAlerts(String district) async {}
+  @override Future<void> unsubscribeFromAlerts(String district) async {}
+  @override Future<void> syncTokenForUser(String uid) async {}
+}
+
 // ── Helper: build the app with stubs ─────────────────────────────────────────
 
 Widget _buildTestApp() {
@@ -107,6 +117,7 @@ Widget _buildTestApp() {
       weatherRepository: _StubWeatherRepo(),
       lessonRepository: _StubLessonRepo(),
       communityRepository: _StubCommunityRepo(),
+      notificationRepository: _StubNotificationRepo(),
     ),
     child: MaterialApp(
       theme: AppTheme.lightTheme,

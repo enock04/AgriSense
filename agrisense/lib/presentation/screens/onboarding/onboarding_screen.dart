@@ -30,6 +30,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   // Google Sign-In state
   bool _googleLoading = false;
   String _googleError = '';
+  bool _signedInViaGoogle = false;
 
   // OTP state
   bool _otpSending = false;
@@ -58,12 +59,32 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Future<void> _signInWithGoogle() async {
     setState(() { _googleLoading = true; _googleError = ''; });
-    await context.read<AppProvider>().signInWithGoogle(
+    final ok = await context.read<AppProvider>().signInWithGoogle(
       onError: (e) {
         if (mounted) setState(() { _googleLoading = false; _googleError = e; });
       },
     );
-    if (mounted) setState(() => _googleLoading = false);
+    if (!mounted) return;
+    setState(() => _googleLoading = false);
+    if (ok) {
+      // Already authenticated — skip straight past the splash page into
+      // profile setup (no phone/OTP needed for a Google-authenticated user).
+      setState(() => _signedInViaGoogle = true);
+      _goTo(1);
+    }
+  }
+
+  Future<void> _finishGoogleOnboarding() async {
+    final provider = context.read<AppProvider>();
+    final googleName = provider.authUser?.displayName?.trim();
+    await provider.completeOnboarding(
+      name: (googleName != null && googleName.isNotEmpty) ? googleName : 'Farmer',
+      phone: provider.authUser?.phoneNumber ?? '',
+      farmerType: _selectedFarmerType,
+      crops: _selectedCrops.isEmpty ? [MockData.allCrops[0], MockData.allCrops[1]] : _selectedCrops,
+      district: _selectedDistrict.isEmpty ? 'Musanze' : _selectedDistrict,
+      language: _selectedLanguage,
+    );
   }
 
   // ── OTP ──────────────────────────────────────────────────────────────
@@ -175,7 +196,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   selected: _selectedDistrict,
                   onSelect: (d) => setState(() => _selectedDistrict = d),
                   canProceed: _canProceed,
-                  onNext: _next,
+                  onNext: _signedInViaGoogle ? _finishGoogleOnboarding : _next,
                 ),
 
                 // 4 ── Phone number

@@ -13,6 +13,7 @@ import '../../domain/repositories/user_repository.dart';
 import '../../domain/repositories/weather_repository.dart';
 import '../../domain/repositories/lesson_repository.dart';
 import '../../domain/repositories/community_repository.dart';
+import '../../domain/repositories/notification_repository.dart';
 import '../../data/mock_data.dart';
 
 // Re-export auth state enum so screens importing this file still compile.
@@ -32,6 +33,7 @@ class AppProvider extends ChangeNotifier {
   final WeatherRepository  _weatherRepo;
   final LessonRepository   _lessonRepo;
   final CommunityRepository _communityRepo;
+  final NotificationRepository _notificationRepo;
 
   AppProvider({
     required AuthRepository     authRepository,
@@ -39,11 +41,13 @@ class AppProvider extends ChangeNotifier {
     required WeatherRepository  weatherRepository,
     required LessonRepository   lessonRepository,
     required CommunityRepository communityRepository,
+    required NotificationRepository notificationRepository,
   })  : _authRepo      = authRepository,
         _userRepo      = userRepository,
         _weatherRepo   = weatherRepository,
         _lessonRepo    = lessonRepository,
-        _communityRepo = communityRepository {
+        _communityRepo = communityRepository,
+        _notificationRepo = notificationRepository {
     _init();
   }
 
@@ -125,6 +129,28 @@ class AppProvider extends ChangeNotifier {
     _notificationsEnabled = v;
     await _userRepo.saveLocalPreference('notifications', v);
     notifyListeners();
+
+    if (v) {
+      final granted = await _notificationRepo.requestPermission();
+      if (granted) {
+        await _notificationRepo.subscribeToAlerts(district);
+        if (_authUser != null) await _notificationRepo.syncTokenForUser(_authUser!.uid);
+      }
+    } else {
+      await _notificationRepo.unsubscribeFromAlerts(district);
+    }
+  }
+
+  /// Subscribes to district alert topics without ever showing an OS
+  /// permission prompt — safe to call on every cold start / profile load.
+  Future<void> _setupNotificationsSilently() async {
+    if (!_notificationsEnabled) return;
+    try {
+      await _notificationRepo.subscribeToAlerts(district);
+      if (await _notificationRepo.hasPermission() && _authUser != null) {
+        await _notificationRepo.syncTokenForUser(_authUser!.uid);
+      }
+    } catch (_) {}
   }
 
   Future<void> setOfflineDownload(bool v) async {
@@ -141,6 +167,9 @@ class AppProvider extends ChangeNotifier {
   // ─────────────────────────────────────────────────────────────────────────
 
   Future<void> _init() async {
+    // Set up FCM/local-notification handling. No permission prompt yet.
+    try { await _notificationRepo.initialize(); } catch (_) {}
+
     // Load local preferences
     _notificationsEnabled  = _userRepo.getLocalBool('notifications')  ?? true;
     _offlineDownloadEnabled= _userRepo.getLocalBool('offlineDownload') ?? false;
@@ -203,6 +232,7 @@ class AppProvider extends ChangeNotifier {
         _loadLessons();
         _loadTip();
         _checkAdmin();
+        _setupNotificationsSilently();
       }
     } catch (e) {
       _setError('Could not load your profile. Check your connection.');
@@ -252,10 +282,18 @@ class AppProvider extends ChangeNotifier {
 
   Future<void> selectDistrict(String d) async {
     if (_profile == null) return;
+    final oldDistrict = district;
     _profile = _profile!.copyWith(district: d);
     await _userRepo.saveLocalPreference('district', d);
     notifyListeners();
     await refreshWeather();
+
+    if (_notificationsEnabled && oldDistrict.isNotEmpty && oldDistrict != d) {
+      try {
+        await _notificationRepo.unsubscribeFromAlerts(oldDistrict);
+        await _notificationRepo.subscribeToAlerts(d);
+      } catch (_) {}
+    }
   }
 
   void toggleWeatherScenario() {
@@ -303,22 +341,21 @@ class AppProvider extends ChangeNotifier {
     _loadLessons();
     _loadTip();
     _checkAdmin();
+    _setupNotificationsSilently();
   }
 
   // ─────────────────────────────────────────────────────────────────────────
   // Auth: Google Sign-In
   // ─────────────────────────────────────────────────────────────────────────
 
-  Future<void> signInWithGoogle({required void Function(String) onError}) async {
+  Future<bool> signInWithGoogle({required void Function(String) onError}) async {
     try {
       final ok = await _authRepo.signInWithGoogle(onError: onError);
-      if (!ok) {
-        // User cancelled the Google picker — not an error
-        return;
-      }
-      // Auth state listener in _init() handles the rest (profile load, routing)
+      // Auth state listener in _init() handles profile load/routing either way.
+      return ok;
     } catch (e) {
       onError(e.toString());
+      return false;
     }
   }
 

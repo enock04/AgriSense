@@ -2,6 +2,7 @@
 class AuthUser {
   final String uid;
   final String? phoneNumber;
+  final String? displayName;
 
-  const AuthUser({required this.uid, this.phoneNumber});
+  const AuthUser({required this.uid, this.phoneNumber, this.displayName});
 }

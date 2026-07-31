@@ -33,6 +33,13 @@ class FirestoreRemoteDatasource {
     return snap.exists ? snap.data() as Map<String, dynamic> : null;
   }
 
+  Future<void> saveFcmToken(String uid, String token) async {
+    await _users.doc(uid).set({
+      'fcmToken': token,
+      'fcmTokenUpdatedAt': FieldValue.serverTimestamp(),
+    }, SetOptions(merge: true));
+  }
+
   // ── Lesson Progress ──────────────────────────────────────────────────────
 
   Future<void> saveLessonProgress(String lessonId, double progress) async {

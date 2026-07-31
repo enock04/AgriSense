@@ -13,8 +13,9 @@ class AuthRepositoryImpl implements AuthRepository {
 
   AuthRepositoryImpl(this._datasource);
 
-  AuthUser? _toAuthUser(User? u) =>
-      u == null ? null : AuthUser(uid: u.uid, phoneNumber: u.phoneNumber);
+  AuthUser? _toAuthUser(User? u) => u == null
+      ? null
+      : AuthUser(uid: u.uid, phoneNumber: u.phoneNumber, displayName: u.displayName);
 
   @override
   Stream<AuthUser?> get authStateChanges =>

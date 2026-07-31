@@ -22,6 +22,8 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        // Required by flutter_local_notifications (uses java.time APIs on API < 26).
+        isCoreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
@@ -33,13 +35,11 @@ android {
         applicationId = "com.agrisense.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        // NOTE: Flutter's Gradle "Upgrading build.gradle.kts" auto-migration has silently
-        // reverted this back to `flutter.minSdkVersion` (which resolves to 24, not 23) on
-        // every one of several occasions during this project's development. There is no
-        // supported override for flutter.minSdkVersion in the Flutter SDK itself — always
-        // re-check this line after any `flutter run`/`flutter build` output that mentions
-        // "Upgrading build.gradle.kts", especially right before a release build.
-        minSdk = flutter.minSdkVersion  // Firebase Auth requires API 23+ — do not replace with flutter.minSdkVersion (see note above)
+        // Firebase Auth requires API 23+; flutter.minSdkVersion resolves to 24, which
+        // satisfies that. Flutter's Gradle "Upgrading build.gradle.kts" auto-migration
+        // unconditionally reverts any hardcoded override back to flutter.minSdkVersion,
+        // so 24 is accepted as the practical floor rather than fighting the tooling.
+        minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
@@ -64,5 +64,9 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }
 
